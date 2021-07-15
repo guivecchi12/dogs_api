@@ -9,3 +9,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.dogImage{
+  width: 30%;
+}
+.dogImage img{
+  width: 100%;
+}
