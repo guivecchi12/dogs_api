@@ -9,20 +9,22 @@ function App() {
   const [dogs, setDogs] = useState();
   useEffect(()=>{
     axios
-      .get('https://api.thedogapi.com/v1/breeds?limit=200&page=0')
+      .get('https://api.thedogapi.com/v1/breeds?limit=175&page=0')
       .then(res => {
         setDogs(res.data)
-        console.log(dogs[0])
+        console.log("DOGS: ", dogs)
         setDogImage(dogs[0].image.url)
       })
       .catch(err => console.log(err))
+      // eslint-disable-next-line
   },[])
   
   return (
     <div className="mainDiv">
       <h1 id="header">All about Dogs!</h1>
       <div className="dogImage">
-        <img src= {dogImage} alt = {dogImage}></img>
+        Image
+        {dogImage ? <img src= {dogImage} alt = {dogImage}></img> : <div>No Image</div>}
       </div>
       <div>
         Information about the breed: {dogs[0].name}
