@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
+
+
 function App() {
+  const [dogImage, setDogImage] = useState();
+  useEffect(()=>{
+    axios
+      .get('https://api.thedogapi.com/v1/images/search')
+      .then(res => {
+        console.log(res);
+        setDogImage(res.data[0].url)
+      })
+      .catch(err => console.log(err))
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="mainDiv">
+      <h1 id="header">All about Dogs!</h1>
+      <div>
+        <img src= {dogImage} alt = {dogImage}></img>
+      </div>
     </div>
   );
 }
