@@ -31,7 +31,6 @@ function App() {
       if(dog.name.toLowerCase().split(' ').includes(searchDog.toLocaleLowerCase()) || dog.name === searchDog){
         found = true
         setMyDog(dog)
-        console.log(myDog)
       }
     })
 
@@ -63,10 +62,10 @@ function App() {
           { !myDog ? 'Loading . . .' : <img src= {myDog.image.url} alt = {myDog.name}></img>}
         </div>
         <div className ="information">
-          <h1 className="informationHeader">Information about the breed:</h1>
+          <h1 className="informationHeader">Information about the Breed</h1>
           { !myDog ? 
           " Loading . . ." :
-          <div className="information">
+          <div className="information infoBody">
             <h2 id="dogName">{myDog.name}</h2>
             <h3 id="origin">Origin: <span className="dogInfo">{myDog.origin}</span></h3>
             <h3 id="origin">Bred for: <span className="dogInfo">{myDog.bred_for}</span></h3>

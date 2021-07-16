@@ -50,18 +50,28 @@
 
 .myDog{
   display:flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .dogImage{
-  width:40%;
+  width:50%;
+  margin-left: 5%;
 }
 .dogImage img{
-  width:100%;
+  width: 100%;
+  height: auto;
+  max-width: 850px;
+  max-height: 730px;
 }
 .information{
-  margin: 10px;
+  width:45%;
+  margin-left: 5px;
   margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
+
 h3{
   margin-top:10px;
 }
