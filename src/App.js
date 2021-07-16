@@ -28,15 +28,13 @@ function App() {
     e.preventDefault();
     // Search Dogs for specific dog
     dogs.forEach(dog => {
-      if(dog.name.split(' ').includes(searchDog)){
-        setMyDog(dog)
+      // check for word within the name, example: Labrador within Labrador Retriever
+      if(dog.name.toLowerCase().split(' ').includes(searchDog.toLocaleLowerCase())){
         found = true
+        setMyDog(dog)
       }
-      // if(searchDog === dog.name){
-      //   setMyDog(dog)
-      //   found = true
-      // }
     })
+
     if(!found){
       alert("Search not found, please try again")
     }
