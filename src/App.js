@@ -28,10 +28,14 @@ function App() {
     e.preventDefault();
     // Search Dogs for specific dog
     dogs.forEach(dog => {
-      if(searchDog === dog.name){
+      if(dog.name.split(' ').includes(searchDog)){
         setMyDog(dog)
         found = true
       }
+      // if(searchDog === dog.name){
+      //   setMyDog(dog)
+      //   found = true
+      // }
     })
     if(!found){
       alert("Search not found, please try again")
