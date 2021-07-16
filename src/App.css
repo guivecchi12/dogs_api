@@ -1,19 +1,70 @@
-.App{
+*{
   margin: 0;
   padding: 0;
+  --backgroundColor:rgb(243, 243, 234);
+  background-color:var(--backgroundColor);
+}
+#header{
+  text-transform: capitalize;
+  margin: 20px;
+  font-size: 3em;
+  text-align: center;
 }
 
-.mainDiv{
+.search{
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
-.dogImage{
+.searchBox{
   width: 30%;
+  min-width: 200px;
+  height: 30px;
+  font-size: 14px;
+  background-color: white;
+  margin: 15px;
+}
+.imgContainer{
+  position: relative;
+  width: 50%;
+}
+.buttonContainer{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+.searchButton{
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.searchButton:hover{
+  background-color: mediumaquamarine;
+  color: var(--backgroundColor);
 }
 
+.myDog{
+  display:flex;
+  justify-content: space-evenly;
+}
+.dogImage{
+  width:40%;
+}
 .dogImage img{
-  width: 100%;
+  width:100%;
+}
+.information{
+  margin: 10px;
+  margin-right: 5%;
+}
+h3{
+  margin-top:10px;
+}
+.dogInfo{
+  font-weight: 400;
 }
