@@ -5,35 +5,42 @@ import './App.css';
 
 
 function App() {
-  const [dogImage, setDogImage] = useState();
   const [dogs, setDogs] = useState();
-  const [searchDog, setSearchDog] = useState();
+  const [searchDog, setSearchDog] = useState('');
   const [myDog, setMyDog] = useState();
+  var found = false;
   useEffect(()=>{
-    axios
-      .get('https://api.thedogapi.com/v1/breeds?limit=175&page=0')
-      .then(res => {
-        setDogs(res.data)
-        console.log("DOGS: ", dogs[0])
-        setDogImage(dogs[0].image.url)
-      })
-      .catch(err => console.log(err))
-      // eslint-disable-next-line
-  },[])
+    if(!dogs){
+      axios
+        .get('https://api.thedogapi.com/v1/breeds?limit=175&page=0')
+        .then(res => {
+          setDogs(res.data)
+        })
+        .catch(err => console.log(err))
+    }
+    else{
+      setMyDog(dogs[0])
+    }
+  }, [dogs])
+
 
   const formSubmit = (e) => {
     e.preventDefault();
-
     // Search Dogs for specific dog
-    if(dogs !== undefined){
-      dogs.forEach(dog => {
-        if(myDog in dog.name){
-          console.log(dog)
-        }
-      })
-      // Delete Search
+    dogs.forEach(dog => {
+      if(searchDog === dog.name){
+        setMyDog(dog)
+        found = true
+      }
+    })
+    if(!found){
+      alert("Search not found, please try again")
+    }
+    else{
+      // Delete and reset Search
       setSearchDog("")
-    }    
+      found = false
+    }
   } 
   
   const handleChange = (e) => {
@@ -50,13 +57,21 @@ function App() {
         <input type="submit" value="Submit" className="searchButton"/>
       </form>
       <div className="dogImage">
-        {dogImage ? <img src= {dogImage} alt = {dogImage}></img> : <div>No Image</div>}
+        { !myDog ? 'Loading . . .' : <img src= {myDog.image.url} alt = {myDog.name}></img>}
       </div>
       <div>
-        Information about the breed:
-        {dogImage ? <div>{dogs[0].name}</div> : <div>Loading</div>}
-         
-
+        <h2>Information about the breed:</h2>
+        { !myDog ? 
+        " Loading . . ." :
+        <div>
+          <h3>{myDog.name}</h3>
+          <h4>Origin: {myDog.origin}</h4>
+          <h5>Weight: {myDog.weight.imperial} lbs </h5>
+          <h5> Height: {myDog.height.imperial} inches</h5>
+          <h5>Temperament: </h5>
+          <p>{myDog.temperament}</p>
+        </div> 
+        }
       </div>
     </div>
   );
